@@ -230,4 +230,20 @@ describe("errors", function(){
     })
   })
 
+  describe(".cson", function(){
+    it("should error with invalid file", function(done){
+      poly.render("cson/invalid.cson", function(error, body){
+        should.not.exist(body)
+        should.exist(error)
+        error.should.have.property('source', "CSON")
+        error.should.have.property('dest', "JSON")
+        error.should.have.property('lineno', 3)
+        error.should.have.property('filename')
+        error.should.have.property('message')
+        error.should.have.property('stack')
+        done()
+      })
+    })
+  })
+
 })
