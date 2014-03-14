@@ -70,7 +70,7 @@ describe("helpers", function(){
     it('should find closest layout', function(done){
       var root = path.join(__dirname, 'fixtures', 'layouts', 'deep')
       polymer.helpers.findNearestLayout(root, "nested").should.eql(['nested', '_layout.jade'].join(path.sep))
-      polymer.helpers.findNearestLayout(root, "nested/deeply").should.eql(['nested', '_layout.jade'].join(path.sep))
+      polymer.helpers.findNearestLayout(root, path.join("nested", "deeply")).should.eql(['nested', '_layout.jade'].join(path.sep))
       done()
     })
   })
@@ -133,10 +133,10 @@ describe("helpers", function(){
     })
 
     it('should return true if any directory in path starts with underscore.', function(done){
-      polymer.helpers.shouldIgnore('foo/_bar.html').should.be.true
-      polymer.helpers.shouldIgnore('foo/_bar/baz.html').should.be.true
-      polymer.helpers.shouldIgnore('_foo/bar/baz.html').should.be.true
-      polymer.helpers.shouldIgnore('/_foo/bar/baz.html').should.be.true
+      polymer.helpers.shouldIgnore(path.join('foo', '_bar.html')).should.be.true
+      polymer.helpers.shouldIgnore(path.join('foo', '_bar', 'baz.html')).should.be.true
+      polymer.helpers.shouldIgnore(path.join('_foo', 'bar', 'baz.html')).should.be.true
+      polymer.helpers.shouldIgnore(path.sep + path.join('_foo', 'bar', 'baz.html')).should.be.true
       done()
     })
 
