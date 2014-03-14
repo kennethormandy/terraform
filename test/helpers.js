@@ -61,14 +61,14 @@ describe("helpers", function(){
 
   describe('.findNearestLayout(root, filename)', function(){
     it('should find closest layout', function(done){
-      var root = __dirname + "/fixtures/layouts/base"
+      var root = __dirname + path.join('fixtures', 'layouts', 'base')
       polymer.helpers.findNearestLayout(root, "").should.eql("_layout.jade")
       polymer.helpers.findNearestLayout(root, null).should.eql("_layout.jade")
       done()
     })
 
     it('should find closest layout', function(done){
-      var root = __dirname + "/fixtures/layouts/deep"
+      var root = __dirname + path.join('fixtures', 'layouts', 'deep')
       polymer.helpers.findNearestLayout(root, "nested").should.eql(['nested', '_layout.jade'].join(path.sep))
       polymer.helpers.findNearestLayout(root, "nested/deeply").should.eql(['nested', '_layout.jade'].join(path.sep))
       done()
@@ -181,20 +181,20 @@ describe("helpers", function(){
   describe('.isTemplate(filename)', function(){
 
     it('should return true if jade file.', function(done){
-      polymer.helpers.isTemplate('foo.jade').should.be.true
-      polymer.helpers.isTemplate('foo/bar/baz.jade').should.be.true
+      polymer.helpers.isTemplate(path.join('foo.jade')).should.be.true
+      polymer.helpers.isTemplate(path.join('foo', 'bar', 'baz.jade')).should.be.true
       done()
     })
 
     it('should return true if markdown file.', function(done){
-      polymer.helpers.isTemplate('foo.md').should.be.true
-      polymer.helpers.isTemplate('foo/bar/baz.md').should.be.true
+      polymer.helpers.isTemplate(path.join('foo.md')).should.be.true
+      polymer.helpers.isTemplate(path.join('foo', 'bar', 'baz.md')).should.be.true
       done()
     })
 
     it('should return false if less file.', function(done){
-      polymer.helpers.isTemplate('foo.less').should.be.false
-      polymer.helpers.isTemplate('foo/bar/baz.less').should.be.false
+      polymer.helpers.isTemplate(path.join('foo.less')).should.be.false
+      polymer.helpers.isTemplate(path.join('foo', 'bar', 'baz.less')).should.be.false
       done()
     })
 
@@ -202,28 +202,28 @@ describe("helpers", function(){
 
   describe('.isStylesheet(filename)', function(){
     it('should return true if less file.', function(done){
-      polymer.helpers.isStylesheet('foo.less').should.be.true
-      polymer.helpers.isStylesheet('foo/bar/baz.less').should.be.true
+      polymer.helpers.isStylesheet(path.join('foo.less')).should.be.true
+      polymer.helpers.isStylesheet(path.join('foo', 'bar', 'baz.less')).should.be.true
       done()
     })
 
     it('should return false if jade file.', function(done){
-      polymer.helpers.isStylesheet('foo.less').should.be.true
-      polymer.helpers.isStylesheet('foo/bar/baz.less').should.be.true
+      polymer.helpers.isStylesheet(path.join('foo.less')).should.be.true
+      polymer.helpers.isStylesheet(path.join('foo', 'bar', 'baz.less')).should.be.true
       done()
     })
   })
 
   describe('.isJavaScript(filename)', function(){
     it('should return true if coffescript file.', function(done){
-      polymer.helpers.isJavaScript('foo.coffee').should.be.true
-      polymer.helpers.isJavaScript('foo/bar/baz.coffee').should.be.true
+      polymer.helpers.isJavaScript(path.join('foo.coffee')).should.be.true
+      polymer.helpers.isJavaScript(path.join('foo', 'bar', 'baz.coffee')).should.be.true
       done()
     })
 
     it('should return false if less file.', function(done){
-      polymer.helpers.isStylesheet('foo.less').should.be.true
-      polymer.helpers.isStylesheet('foo/bar/baz.less').should.be.true
+      polymer.helpers.isStylesheet(path.join('foo.less')).should.be.true
+      polymer.helpers.isStylesheet(path.join('foo', 'bar', 'baz.less')).should.be.true
       done()
     })
   })
