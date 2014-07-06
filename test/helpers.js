@@ -18,8 +18,8 @@ describe("helpers", function(){
     it('should build priority list for css file.', function(done){
       var list = polymer.helpers.buildPriorityList('main.css')
       list.should.be.an.instanceOf(Array)
-      list.should.have.lengthOf(6)
-      list.should.eql("main.styl, main.less, main.scss, main.css.styl, main.css.less, main.css.scss".split(', '))
+      list.should.have.lengthOf(8)
+      list.should.eql("main.styl, main.less, main.scss, main.sass, main.css.styl, main.css.less, main.css.scss, main.css.sass".split(', '))
       done()
     })
 
@@ -103,6 +103,30 @@ describe("helpers", function(){
       polymer.helpers.outputPath('foobar.bar.ejs').should.eql('foobar.bar')
       done()
     })
+
+    it('should not allow alternate file extensions if disabled.', function(done){
+      polymer.helpers.outputPath('foobar.foo', false).should.eql('foobar.foo')
+      polymer.helpers.outputPath('foobar.bar.jade', false).should.eql('foobar.bar.html')
+      polymer.helpers.outputPath('foobar.bar.ejs', false).should.eql('foobar.bar.html')
+      done()
+    })
+
+    it('should allow dot character on file name.', function(done){
+      polymer.helpers.outputPath('foobar-1.0.0.html').should.eql('foobar-1.0.0.html')
+      polymer.helpers.outputPath('foobar-1.0.0.jade').should.eql('foobar-1.0.0.html')
+      polymer.helpers.outputPath('foobar-1.0.0.html.jade').should.eql('foobar-1.0.0.html')
+      polymer.helpers.outputPath('foobar.min.js').should.eql('foobar.min.js')
+      polymer.helpers.outputPath('foobar.min.js.coffee').should.eql('foobar.min.js')
+      done()
+    })
+
+    it('should allow dot character on file path.', function(done){
+      polymer.helpers.outputPath('1.0.0/foobar.html').should.eql('1.0.0/foobar.html')
+      polymer.helpers.outputPath('1.0.0/foobar.jade').should.eql('1.0.0/foobar.html')
+      polymer.helpers.outputPath('1.0.0/foobar.html.jade').should.eql('1.0.0/foobar.html')
+      done()
+    })
+
   })
 
   describe('.outputType(filename)', function(){
