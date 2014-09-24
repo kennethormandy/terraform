@@ -38,6 +38,7 @@ describe("helpers", function(){
       list.should.include('profile.json.jade')
       list.should.include('profile.json.ejs')
       list.should.include('profile.json.md')
+      list.should.include('profile.json.hbs')
       list.should.eql('profile.json.jade, profile.json.ejs, profile.json.md, profile.json.hbs'. split(', '))
       done()
     })

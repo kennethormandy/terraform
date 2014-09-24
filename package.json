@@ -33,7 +33,7 @@
     "stylus": "0.47.3",
     "autoprefixer": "~2.2.0",
     "minify": "git://github.com/kennethormandy/minify#v0.2.0",
-    "handlebars": "v2.0.0-alpha.2"
+    "handlebars": "~2.0.0"
   },
   "devDependencies": {
     "mocha": "1.8.2",
